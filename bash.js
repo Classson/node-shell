@@ -1,9 +1,12 @@
+const pwd = require('./pwd')
+console.log(pwd)
+
 process.stdout.write('promt > ')
 
 process.stdin.on('data', (data) => {
   const cmd = data.toString().trim();
   if (cmd === "pwd"){
-    process.stdout.write(process.cwd());
+    pwd[pwdCall]();
   }
 
   // alternative we found:
@@ -13,3 +16,4 @@ process.stdin.on('data', (data) => {
   // process.stdout.write('You typed: ' + cmd);
   // process.stdout.write('\nprompt > ');
 });
+
