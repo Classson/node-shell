@@ -1,19 +1,38 @@
 const pwd = require('./pwd')
-console.log(pwd)
+const ls = require('./ls')
+const curl = require('./curl')
 
-process.stdout.write('promt > ')
-
-process.stdin.on('data', (data) => {
-  const cmd = data.toString().trim();
+process.stdin.on('data', (command) => {
+  const cmd = command.toString().trim();
   if (cmd === "pwd"){
-    pwd[pwdCall]();
+    pwd()
   }
-
-  // alternative we found:
-  //if (cmd === 'pwd) {
-  //   process.stdout.write(__dirname);
-  //}
-  // process.stdout.write('You typed: ' + cmd);
-  // process.stdout.write('\nprompt > ');
 });
+
+process.stdin.on('data', (command) => {
+  const cmd = command.toString().trim();
+  if(cmd === 'ls'){
+    ls.lsFunc()
+  }
+})
+
+process.stdin.on('data', (command) => {
+  const cmd = command.toString().trim();
+  let args = cmd.split(" ");
+  let firstArg = args[0]
+  let secondArg = args[1]
+  if(firstArg === 'cat'){
+    ls.fileInfo(secondArg)
+  }
+})
+
+process.stdin.on('data', (command) => {
+  const cmd = command.toString().trim();
+  let args = cmd.split(" ");
+  let firstArg = args[0]
+  let secondArg = args[1]
+  if(firstArg === 'curl'){
+    curl.curlFunc(secondArg);
+  }
+})
 
